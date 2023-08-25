@@ -1,0 +1,37 @@
+﻿@model Website.Models.LoginSettingViewModel
+
+<section class="signup-section">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5">
+            <div class="col-md-10 col-lg-8 mx-auto text-center">
+                @*<i class="fa fa-user-circle fa-2x mb-2 text-white" aria-hidden="true"></i>*@
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" color="white" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                </svg>
+                <h2 class="text-white mb-5">Вход для администраторов</h2>
+                <form class="form-signup" method="post" asp-controller="Auth" asp-action="Login">
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div asp-validation-summary="ModelOnly"></div>
+                                <div class="col">
+                                    <input class="form-control" asp-for="Login" aria-label="Логин" placeholder="Логин" title="Логин" />
+                                    <span class="not-valide-span" asp-validation-for="Login"></span>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" asp-for="Password" aria-label="Пароль" placeholder="Пароль" title="Пароль" />
+                                    <span class="not-valide-span" asp-validation-for="Password"></span>
+                                </div>
+                                <div class="col">
+                                    <input class="btn btn-primary" type="submit" value="Войти" title="Вход" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

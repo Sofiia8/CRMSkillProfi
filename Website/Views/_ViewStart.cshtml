@@ -1,0 +1,14 @@
+﻿@if (Model is null && !User.Identity.IsAuthenticated)
+{
+
+    Layout = "_LayoutError";
+}
+else if (User.Identity.IsAuthenticated)
+{
+    Layout = "_LayoutAdmin";
+}
+else
+{
+    Layout = "_LayoutLanding";
+}
+

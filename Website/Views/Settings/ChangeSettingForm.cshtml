@@ -1,0 +1,29 @@
+﻿@model Website.Models.ChangeFormNewModel
+
+<main>
+    <div class="container-fluid px-5">
+        <h1 class="mt-5 mx-4 mx-md-5">Изменить текст поля:</h1>
+        <form class="form-signup" id="contactForm" method="post" asp-controller="Settings" asp-action="ChangeSetting">
+            <div class="row mx-2">
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control" readonly type="text" value="Текущее значение" title="Текущее значение" placeholder="Текущее значение" />
+                </div>
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control fw-bold input-placeholder-nonbright" readonly type="text" asp-for="currentName" value=@Model.currentName title="Значение" placeholder="Значение" />
+                </div>
+            </div>
+            <div class="row mx-2">
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control" readonly type="text" value="Новое значение" title="Новое значение" placeholder="Новое значение" />
+                </div>
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control fw-bold input-placeholder-nonbright" type="text" asp-for="newName" title="Значение" placeholder="Новое значение" />
+                </div>
+            </div>
+            <div class="col m-auto py-4 d-flex flex-column align-items-center">
+                <input type="hidden" asp-for=@Model.id/>
+                <input class="btn btn-primary" type="submit" value="Применить изменения" title="Применить" placeholder="Применить" />
+            </div>
+        </form>
+    </div>
+</main>

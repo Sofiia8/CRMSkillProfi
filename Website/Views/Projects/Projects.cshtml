@@ -1,0 +1,37 @@
+﻿@model Website.Models.ProjectsViewModel
+
+@{
+    ViewData["Title"] = "Projects";
+}
+<!-- Masthead-->
+<header class="masthead-project">
+    <div class="container px-4 px-lg-5 d-flex align-items-center">
+        <div class="d-flex justify-content-center">
+            <div class="text-center">
+                <h2 class="text-white text-uppercase mx-auto my-4">Проекты</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="container container-1 px-4 px-lg-5">
+        @foreach (var proj in Model.Projects)
+        {
+            <div class="container-2">
+                <div class="container-3">
+                    <img src=@("/assets/img/"+proj.ImageId) width="180">
+                </div>
+                <div class="container-3 small text-black mb-2">
+                    @proj.Name
+                </div>
+                <form class="container-3 mb-2" method="get" asp-controller="Projects" asp-action="GetItemDescriptionId">
+                    <div class="card">
+                        <input type="hidden" name="id" value=@proj.Id />
+                        <input class="btn btn-primary" id=@proj.Id name="project" type="submit" placeholder="Описание" value="Описание" />
+                    </div>
+                </form>
+            </div>
+        }
+    </div>
+
+</header>
+

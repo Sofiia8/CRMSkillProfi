@@ -1,0 +1,98 @@
+﻿@model Website.Models.ContactsViewModel
+
+<main>
+    @*<div class="d-flex justify-content-center">
+        <div class="text-center">
+            <h2 class="text-uppercase mx-auto my-4">Изменить контакты:</h2>
+        </div>
+    </div>*@
+    <div class="container-fluid px-5">
+        <h1 class="mt-5 mx-4 mx-md-5">Изменить контакты:</h1>
+        <form class="form-signup" id="contactForm" method="post" asp-controller="Contacts" asp-action="EditContacts">
+            <div class="row mx-2">
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control" readonly type="text" value="Почтовый индекс" title="Почтовый индекс" placeholder="Почтовый индекс" />
+                </div>
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control fw-bold input-placeholder-nonbright" type="text" asp-for="PostIndex" value=@Model.PostIndex title="Значение" placeholder="Значение" />
+                </div>
+            </div>
+            <div class="row mx-2">
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control" readonly type="text" value="Город" title="Город" placeholder="Город" />
+                </div>
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control fw-bold input-placeholder-nonbright" type="text" asp-for="City" value=@Model.City title="Значение" placeholder="Значение" />
+                </div>
+            </div>
+            <div class="row mx-2">
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control" readonly type="text" value="Улица" title="Улица" placeholder="Улица" />
+                </div>
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control fw-bold input-placeholder-nonbright" type="text" asp-for="Street" value=@Model.Street title="Значение" placeholder="Значение" />
+                </div>
+            </div>
+            <div class="row mx-2">
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control" readonly type="text" value="Дом" title="Дом" placeholder="Дом" />
+                </div>
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control fw-bold input-placeholder-nonbright" type="text" asp-for="House" value=@Model.House title="Значение" placeholder="Значение" />
+                </div>
+            </div>
+            <div class="row mx-2">
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control" readonly type="text" value="Номер телефона" title="Номер телефона" placeholder="Номер телефона" />
+                </div>
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control fw-bold input-placeholder-nonbright" type="text" asp-for="PhoneNumber" value=@Model.PhoneNumber title="Значение" placeholder="Значение" />
+                </div>
+            </div>
+            <div class="row mx-2">
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control" readonly type="text" value="Факс" title="Факс" placeholder="Факс" />
+                </div>
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control fw-bold input-placeholder-nonbright" type="text" asp-for="Fax" value=@Model.Fax title="Значение" placeholder="Значение" />
+                </div>
+            </div>
+            <div class="row mx-2">
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control" readonly type="text" value="Email" title="Email" placeholder="Email" />
+                </div>
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control fw-bold input-placeholder-nonbright" type="text" asp-for="Email" value=@Model.Email title="Значение" placeholder="Значение" />
+                </div>
+            </div>
+            <div class="row mx-2">
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control" readonly type="text" value="VKReference" title="VKReference" placeholder="VKReference" />
+                </div>
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control fw-bold input-placeholder-nonbright" type="text" asp-for="VKReference" value=@Model.VKReference title="Значение" placeholder="Значение" />
+                </div>
+            </div>
+            <div class="row mx-2">
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control" readonly type="text" value="TelegramReference" title="TelegramReference" placeholder="TelegramReference" />
+                </div>
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control fw-bold input-placeholder-nonbright" type="text" asp-for="TelegramReference" value=@Model.TelegramReference title="Значение" placeholder="Значение" />
+                </div>
+            </div>
+            <div class="row mx-2">
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control" readonly type="text" value="YoutubeReference" title="YoutubeReference" placeholder="YoutubeReference" />
+                </div>
+                <div class="col-12 col-md-6 my-2 my-md-4">
+                    <input class="form-control fw-bold input-placeholder-nonbright" type="text" asp-for="YoutubeReference" value=@Model.YoutubeReference title="Значение" placeholder="Значение" />
+                </div>
+            </div>
+            <div class="col m-auto py-4 d-flex flex-column align-items-center">
+                <input type="hidden" asp-for="ImageId" value="@Model.ImageId"/>
+                <input class="btn btn-primary" type="submit" value="Применить изменения" title="Применить" placeholder="Применить" />
+            </div>
+        </form>
+    </div>
+</main>

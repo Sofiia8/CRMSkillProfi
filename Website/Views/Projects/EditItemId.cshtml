@@ -1,0 +1,114 @@
+﻿@model Website.Models.Project
+
+@{
+    ViewData["Title"] = "Edit Project";
+}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="~/css/styles.css" rel="stylesheet" />
+</head>
+<body>
+    <header class="masthead-project p-3 p-md-4 p-lg-5">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 mb-0">
+                <div class="col mb-3">
+                    <div class="card card-body form-signup text-center py-4 h-100">
+                        <form method="post" asp-controller="Projects" asp-action="EditItemId">
+                            <div class="mt-4">
+                                <div class="col">
+                                    <input class="project-file-input" type="file" name="imageFile" id="imageFileInput" accept="image/*" />
+                                    <label class="btn btn-primary" for="imageFileInput">Добавить изображение</label>
+                                    <div class="mt-4" id="loadedImage">
+                                        <div class="my-4">
+                                            <img id="image" src=@("/assets/img/"+Model.ImageId) width="300">
+                                        </div>
+                                        <div id="imageInfo" class="row my-0 mx-2">
+                                            <div class="col d-flex">
+                                                <label id="file" class="d-flex text-nowrap">Файл:</label>
+                                            </div>
+                                            <div class="col-12 col-xl-9 d-flex">
+                                                <textarea class="form-control" id="nameImage" name="imageid" rows="1" wrap="soft"
+                                                          aria-label=@Model.ImageId readonly>@Model.ImageId</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my-4">
+                                <hr class="mx-auto" />
+                            </div>
+                            <div class="row mb-3 mx-2">
+                                <div class="col d-flex">
+                                    <label class="d-flex text-nowrap">Краткое описание:</label>
+                                </div>
+                                <div class="col-12 col-xl-9 d-flex">
+                                    <textarea class="form-control" name="name" rows="1" wrap="soft"
+                                        aria-label=@Model.Name>@Model.Name</textarea>
+                                </div>
+                            </div>
+                            <div class="row mb-3 mx-2">
+                                <div class="col d-flex">
+                                    <label class="d-flex">Подробное описание:</label>
+                                </div>
+                                <div class="col-12 col-xl-9 d-flex">
+                                    <textarea class="form-control" name="description" rows="4" wrap="soft"
+                                        aria-label=@Model.Description>@Model.Description</textarea>
+                                </div>
+                            </div>
+                            <input type="hidden" asp-for=@Model.Id />
+                            
+                            <div class="container px-5 mb-4 d-flex">
+                                <input class="btn btn-danger" id="add" name="add" type="submit" placeholder="Сохранить" value="Сохранить" />
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</body>
+</html>
+<script>
+    document.getElementById('imageFileInput').addEventListener('change', function (event) {
+
+        const fileInput = event.target;
+        const selectedFile = fileInput.files[0];
+
+        if (selectedFile) {
+
+
+            const formData = new FormData();
+            formData.append('imageFile', selectedFile);
+
+            fetch('/Projects/AddImageForProject', {
+                method: 'POST',
+                body: formData
+            }).then(response => {
+                if (response.ok) {
+                    console.log('Файл успешно загружен.');
+
+                    response.text().then(imageUrl => {
+
+                        document.getElementById('image').src = "/assets/img/" + imageUrl;
+                        document.getElementById('nameImage').value = imageUrl;
+
+                    });
+
+                } else {
+                    console.error('Ошибка загрузки файла.');
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    });
+</script>

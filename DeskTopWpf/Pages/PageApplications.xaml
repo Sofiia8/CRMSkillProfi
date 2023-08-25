@@ -1,0 +1,236 @@
+﻿<Page x:Class="DeskTopWpf.PageApplications"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DeskTopWpf"
+      mc:Ignorable="d" 
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageApplications" Loaded="Page_Loaded">
+
+    <Grid Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Page}}">
+        <Grid.Resources>
+            <local:WidthToOrientStackPanelConverter x:Key="WidthToOrientStackPanelConverter"/>
+        </Grid.Resources>
+        <Border CornerRadius="7" Margin="20,0" BorderThickness="1" BorderBrush="Gray">
+            <StackPanel Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Border}}">
+
+                <StackPanel Height="56" Background="#4CDAD9D9" Orientation="Horizontal" >
+                    <DockPanel LastChildFill="True" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Border}}">
+                        <TextBlock Width="130" MinWidth="100" DockPanel.Dock="Left" Margin="15,2" VerticalAlignment="Center" 
+                                   FontWeight="Medium" FontSize="28" FontFamily="Segoe UI" HorizontalAlignment="Left" TextWrapping="Wrap"
+                                   Text="Заявки"/>
+                        <TextBlock x:Name="countAll" MinWidth="50" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="0,0,15,0"
+                                   VerticalAlignment="Center" FontWeight="Normal" FontSize="16" FontFamily="Segoe UI" TextWrapping="Wrap"/>
+                    </DockPanel>
+                </StackPanel>
+                <TextBlock x:Name="countPeriod" Width="230" MinWidth="150" DockPanel.Dock="Top" Margin="15,2" VerticalAlignment="Center"
+                           FontWeight="Regular" FontSize="12" FontFamily="Segoe UI" HorizontalAlignment="Left" TextWrapping="Wrap"
+                           Foreground="#FF898888"/>
+
+                <StackPanel Background="Transparent" Orientation="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Page},
+                    Converter={StaticResource WidthToOrientStackPanelConverter}, ConverterParameter=530}">
+                    <StackPanel Background="Transparent" Orientation="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Page},
+                    Converter={StaticResource WidthToOrientStackPanelConverter}, ConverterParameter=800}">
+                        <DockPanel LastChildFill="True" >
+                            <TextBlock MinWidth="80" DockPanel.Dock="Left" HorizontalAlignment="Left" Margin="15,2" VerticalAlignment="Center"
+                                       FontWeight="Normal" FontSize="16" FontFamily="Segoe UI" TextWrapping="Wrap" Text="Период с:" />
+                            <DatePicker Style="{DynamicResource DatePickerStyle1}" x:Name="startDatePicker" 
+                                        SelectedDate="{Binding DateFrom, Mode=TwoWay}" DockPanel.Dock="Left" SelectedDateFormat="Short" 
+                                        HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,2" BorderBrush="#FF867C7C" FontSize="14"
+                                        FontFamily="Varela Round" FirstDayOfWeek="Monday"  />
+                        </DockPanel>
+                        <DockPanel LastChildFill="True" Margin="20,2" >
+                            <TextBlock MinWidth="80" DockPanel.Dock="Left" HorizontalAlignment="Center" Margin="5,2" VerticalAlignment="Center"
+                                       FontWeight="Normal" FontSize="16" FontFamily="Segoe UI" TextWrapping="Wrap" Text="по:" TextAlignment="Center" />
+                            <DatePicker Style="{DynamicResource DatePickerStyle1}" x:Name="endDatePicker" SelectedDate="{Binding DateTo}"
+                                        DockPanel.Dock="Left" SelectedDateFormat="Short" HorizontalAlignment="Left"
+                                        VerticalAlignment="Center" BorderBrush="#FF867C7C" FontSize="14" FontFamily="Varela Round"
+                                        FirstDayOfWeek="Monday"  />
+                        </DockPanel>
+                    </StackPanel>
+
+                    <StackPanel HorizontalAlignment="Center" Margin="15,2" VerticalAlignment="Center" >
+                        <Button IsDefault="True" Content="Задать период" MinWidth="180" Height="40" Click="Button_ClickAsync"
+                                FontSize="18" Margin="15,2" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                FontFamily="Varela Round" Foreground="White" Background="#FF212529">
+                            <Button.Resources> 
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="7"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Page},
+                    Converter={StaticResource WidthToOrientStackPanelConverter}, ConverterParameter=900}">
+                    <StackPanel Orientation="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Page},
+                    Converter={StaticResource WidthToOrientStackPanelConverter}, ConverterParameter=470}">
+                        <Button Content="Вчера" MinWidth="180" Height="40" FontSize="18" Margin="15,5" HorizontalAlignment="Center" 
+                                Foreground="#FF212529" BorderBrush="#FFEAEDF0" Background="#FFEAEDF0" FontFamily="Varela Round"
+                                Click="Button_Click_Yesterday">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="7"/>
+                                    <Setter Property="BorderBrush" Value="Transparent"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button Content="Сегодня" MinWidth="180" Height="40" FontSize="18" Margin="15,5" HorizontalAlignment="Center" 
+                                Foreground="#FF212529" BorderBrush="#FFEAEDF0" Background="#FFEAEDF0" FontFamily="Varela Round" 
+                                Click="Button_Click_Today" >
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="7"/>
+                                    <Setter Property="BorderBrush" Value="Transparent"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Orientation="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Page},
+                    Converter={StaticResource WidthToOrientStackPanelConverter}, ConverterParameter=470}">
+                        <Button Content="Неделя" MinWidth="180" Height="40" FontSize="18" Margin="15,5" HorizontalAlignment="Center" 
+                                Foreground="#FF212529" BorderBrush="#FFEAEDF0" Background="#FFEAEDF0" FontFamily="Varela Round" Click="Button_Click_Week" >
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="7"/>
+                                    <Setter Property="BorderBrush" Value="Transparent"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button Content="Месяц" MinWidth="180" Height="40" FontSize="18" Margin="15,5" HorizontalAlignment="Center" 
+                                Foreground="#FF212529" BorderBrush="#FFEAEDF0" Background="#FFEAEDF0" FontFamily="Varela Round"
+                                Click="Button_Click_Month" >
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="7"/>
+                                    <Setter Property="BorderBrush" Value="Transparent"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+                <DataGrid Style="{DynamicResource DataGridStyle1}" x:Name="personList" CanUserAddRows="False" AutoGenerateColumns="False"
+                          HorizontalAlignment="Stretch" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                 VerticalAlignment="Stretch" Margin="15" FontSize="20" FontWeight="Bold"
+                 ColumnHeaderHeight="75" HeadersVisibility="Column" VerticalGridLinesBrush="LightGray" HorizontalGridLinesBrush="LightGray">
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="BorderBrush" Value="LightGray"/>
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="Foreground" Value="#FF212529"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Margin" Value="5,0,0,0"/>
+                            <Setter Property="FontFamily" Value="Varela Round"/>
+                            <Setter Property="FontSize" Value="16"/>
+                            <Setter Property="FontWeight" Value="Normal"/>
+                        </Style>
+                    </DataGrid.CellStyle>
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="BorderBrush" Value="LightGray"/>
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="Foreground" Value="#FF212529"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="Margin" Value="1"/>
+                            <Setter Property="Padding" Value="5"/>
+                            <Setter Property="FontFamily" Value="Varela Round"/>
+                            <Setter Property="FontSize" Value="18"/>
+                            <Setter Property="FontWeight" Value="Medium"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+
+                    <DataGrid.Columns>
+                       
+                        <DataGridTextColumn Binding="{Binding Id, Mode=OneTime}" Width="0.3*" MinWidth="40">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="ID" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center"/>
+                            </DataGridTextColumn.Header>
+
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Datetime}" Width="1.2*" MinWidth="100">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Дата создания" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center"/>
+                            </DataGridTextColumn.Header>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Binding="{Binding Name}" Width="0.8*" MinWidth="90">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Имя" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center"/>
+                            </DataGridTextColumn.Header>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Binding="{Binding Email}" Width="*" MinWidth="100">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Email" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center"/>
+                            </DataGridTextColumn.Header>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Description}" Width="2*" MinWidth="130">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Описание" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center"/>
+                            </DataGridTextColumn.Header>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Status, Mode=TwoWay}" Width="0.7*" MinWidth="90">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Статус" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTemplateColumn Width="1.1*" MinWidth="100">
+                            <DataGridTemplateColumn.Header>
+                                <TextBlock Text="Изменить статус" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center"/>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <MenuItem x:Name="ChooseStatusButton" Margin="15,0,0,0" MaxWidth="50" Width="30" Height="30" HorizontalAlignment="Left"
+                                              VerticalAlignment="Top" Click="ChooseStatusButton_Click">
+                                        <MenuItem.Icon>
+                                            <fa:ImageAwesome Icon="Pencil" Width="16" Height="16" >
+                                                <fa:ImageAwesome.Style>
+                                                    <Style TargetType="fa:ImageAwesome">
+                                                        <Setter Property="Foreground" Value="#FF212529" />
+                                                    </Style>
+                                                </fa:ImageAwesome.Style>
+                                            </fa:ImageAwesome>
+                                        </MenuItem.Icon>
+
+                                        <MenuItem.ContextMenu>
+                                            <ContextMenu Background="White" Foreground="#FF212529"  HorizontalAlignment="Left">
+                                                <MenuItem Header="Получена" Click="NewStReceived_Click" FontFamily="Varela Round" FontSize="16" Height="30" />
+                                                <MenuItem Header="В работе" Click="NewStInWork_Click" FontFamily="Varela Round" FontSize="16" Height="30"/>
+                                                <MenuItem Header="Выполнена" Click="NewStDone_Click" FontFamily="Varela Round" FontSize="16" Height="30"/>
+                                                <MenuItem Header="Отклонена" Click="NewStRejected_Click" FontFamily="Varela Round" FontSize="16" Height="30"/>
+                                                <MenuItem Header="Отменена" Click="NewStCancelled_Click" FontFamily="Varela Round" FontSize="16" Height="30"/>
+                                            </ContextMenu>
+                                        </MenuItem.ContextMenu>
+                                    </MenuItem>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>
