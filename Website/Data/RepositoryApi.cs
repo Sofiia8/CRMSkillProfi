@@ -86,7 +86,6 @@ namespace Website.Data
         {
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Put,
                                 $"https://localhost:44376/api/Application/PutStatusApplication/{id}/{status}");
-            //httpRequestMessage.Content = JsonContent.Create(new { status = status });
             httpRequestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
             try
             {
